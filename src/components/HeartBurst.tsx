@@ -2,17 +2,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMemo } from "react";
 
 export function HeartBurst({ active }: { active: boolean }) {
-  const hearts = useMemo(
-    () =>
-      Array.from({ length: 30 }, () => ({
-        x: (Math.random() - 0.5) * window.innerWidth,
-        y: (Math.random() - 0.5) * window.innerHeight,
-        rot: Math.random() * 360,
-        scale: 0.5 + Math.random() * 1.5,
-        hue: [350, 320, 290, 240, 50][Math.floor(Math.random() * 5)],
-      })),
-    [active],
-  );
+  const hearts = useMemo(() => {
+    const w = typeof window !== "undefined" ? window.innerWidth : 1200;
+    const h = typeof window !== "undefined" ? window.innerHeight : 800;
+    return Array.from({ length: 30 }, () => ({
+      x: (Math.random() - 0.5) * w,
+      y: (Math.random() - 0.5) * h,
+      rot: Math.random() * 360,
+      scale: 0.5 + Math.random() * 1.5,
+      hue: [350, 320, 290, 240, 50][Math.floor(Math.random() * 5)],
+    }));
+  }, [active]);
 
   return (
     <AnimatePresence>
