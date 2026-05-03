@@ -4,7 +4,7 @@ import { Hero } from "@/components/Hero";
 import { Gallery } from "@/components/Gallery";
 import { Timeline } from "@/components/Timeline";
 import { Ending } from "@/components/Ending";
-import { Blobs, HeartParticles, useLenis } from "@/components/Atmosphere";
+import { HeartParticles, useLenis } from "@/components/Atmosphere";
 import { HeartBurst } from "@/components/HeartBurst";
 
 export const Route = createFileRoute("/")({
