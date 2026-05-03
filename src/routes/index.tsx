@@ -43,7 +43,7 @@ function Index() {
 
   return (
     <main className="relative min-h-screen text-foreground">
-      <Blobs />
+      
       <HeartParticles count={26} />
       <HeartBurst active={exploding} />
 
