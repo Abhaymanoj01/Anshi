@@ -58,10 +58,10 @@ export function QuizEntry({ onPass }: { onPass: () => void }) {
                 value={answer}
                 onChange={(e) => { setAnswer(e.target.value); setError(false); }}
                 placeholder="Type your answer..."
-                className="w-full bg-black/5 border border-white/20 rounded-2xl px-6 py-4 text-center text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-pink-400/50 transition-all backdrop-blur-sm text-lg font-medium"
+                className="w-full bg-black/5 border border-white/20 rounded-2xl px-6 py-4 text-center text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-pink-400/50 transition-all backdrop-blur-sm text-lg font-medium font-sans"
               />
               {error && (
-                <motion.p
+                <motion.p 
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-red-400 text-sm mt-3 absolute -bottom-6 w-full text-center font-medium"
@@ -76,7 +76,7 @@ export function QuizEntry({ onPass }: { onPass: () => void }) {
               className="w-full mt-4 group relative overflow-hidden rounded-2xl px-8 py-4 bg-gradient-to-r from-rose-400 to-pink-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative z-10 text-lg font-medium">
+              <span className="relative z-10 text-sm font-bold tracking-[0.2em] uppercase font-sans">
                 Let's Gooo
               </span>
             </button>
