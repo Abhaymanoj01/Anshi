@@ -1,106 +1,120 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { PHOTOS } from "@/data/photos";
-import { Lightbox } from "./Lightbox";
 
-function PhotoCard({ index, src, caption, onClick }: { index: number; src: string; caption: string; onClick: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const rotate = (index % 5 - 2) * 1.5;
-  const heights = ["h-72", "h-96", "h-80", "h-[28rem]", "h-72", "h-96"];
-  const h = heights[index % heights.length];
-  return (
-    <motion.div
-      ref={ref}
-      style={{ y, rotate }}
-      initial={{ opacity: 0, y: 80, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.9, delay: (index % 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative mb-6 break-inside-avoid"
-    >
-      <button
-        onClick={onClick}
-        className="shadow-card relative block w-full overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:shadow-[0_0_50px_oklch(0.75_0.22_350/0.5)]"
-      >
-        <img
-          src={src}
-          alt={caption}
-          loading="lazy"
-          className={`w-full ${h} object-cover transition-transform duration-700 group-hover:scale-110`}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <div className="absolute right-0 bottom-0 left-0 translate-y-4 p-5 text-left opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-          <p className="font-display text-lg text-foreground">{caption}</p>
-          <p className="mt-1 text-xs tracking-widest text-gold uppercase">Memory #{String(index + 1).padStart(2, "0")}</p>
-        </div>
-        <div
-          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{ boxShadow: "inset 0 0 40px oklch(0.75 0.22 350 / 0.4)" }}
-        />
-      </button>
-    </motion.div>
-  );
-}
+export function Gallery({ burst, onBurst, showPhotos = true }: { burst: boolean; onBurst: () => void; showPhotos?: boolean }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [shuffledPhotos, setShuffledPhotos] = useState(PHOTOS);
 
-export function Gallery({ burst, onBurst }: { burst: boolean; onBurst: () => void }) {
-  const [active, setActive] = useState<number | null>(null);
+  useEffect(() => {
+    setShuffledPhotos([...PHOTOS].sort(() => Math.random() - 0.5));
+  }, []);
+
+  // Auto-play the slideshow
+  useEffect(() => {
+    if (!showPhotos || shuffledPhotos.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        if (prev >= shuffledPhotos.length - 1) {
+          clearInterval(interval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 3500); // Change photo every 3.5 seconds
+
+    return () => clearInterval(interval);
+  }, [showPhotos, shuffledPhotos.length]);
+
+  // Scroll to typing message when the last photo is reached
+  useEffect(() => {
+    if (showPhotos && shuffledPhotos.length > 0 && currentIndex === shuffledPhotos.length - 1) {
+      const timer = setTimeout(() => {
+        document.getElementById("typing-message")?.scrollIntoView({ behavior: "smooth" });
+      }, 2500); // Wait 2.5 seconds before scrolling to let them look at the final photo
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, showPhotos, shuffledPhotos.length]);
+
+  if (!showPhotos) {
+    // Render an empty section with the ID so scroll-into-view still works
+    return <section id="gallery" className="min-h-screen" />;
+  }
+
+  const currentPhoto = shuffledPhotos[currentIndex] || PHOTOS[0];
 
   return (
-    <section id="gallery" className="relative px-6 py-32">
-      <div className="mx-auto max-w-7xl">
+    <section id="gallery" className="relative px-6 py-24 min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      <div className="mx-auto max-w-5xl w-full flex flex-col items-center">
+
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-10 text-center"
         >
           <p className="mb-3 text-sm tracking-[0.4em] text-gold uppercase">The Memory Vault</p>
-          <h2 className="text-5xl font-bold md:text-7xl">
-            <span className="text-gradient">Forty-Two</span> Forever Frames
+          <h2 className="text-4xl font-bold md:text-5xl">
+            <span className="text-gradient"> The Moments </span> I’ll Carry Forever
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-            Scroll slowly. Each photograph is a chapter of laughter, late-nights, and everything in between.
-          </p>
+          <p className="mt-3 text-muted-foreground">Reliving our journey, one beautiful moment at a time.</p>
+        </motion.div>
+
+        {/* Slideshow Container */}
+        <div className="relative w-full aspect-[4/3] sm:aspect-video flex items-center justify-center mt-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 1.05, filter: "blur(8px)" }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              {/* Polaroid-style frame */}
+              <div className="relative w-[90%] sm:w-[80%] max-w-3xl aspect-[4/3] bg-white rounded-xl shadow-card border border-black/5 p-4 pb-16 sm:p-6 sm:pb-20 rotate-[-1deg] transition-transform hover:rotate-0 duration-500">
+                <img
+                  src={currentPhoto.src}
+                  alt={currentPhoto.caption}
+                  className="w-full h-full object-cover rounded-lg bg-black/5"
+                />
+                <div className="absolute bottom-5 sm:bottom-6 left-0 right-0 text-center px-6">
+                  <p className="font-display text-xl sm:text-2xl text-foreground font-medium">
+                    {currentPhoto.caption}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1 uppercase tracking-widest">
+                    Memory {currentIndex + 1} of {PHOTOS.length}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Manual Navigation */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="mt-16 flex items-center gap-6"
+        >
           <button
-            onClick={onBurst}
-            className="shine glass mt-8 inline-flex items-center gap-2 overflow-hidden rounded-full border border-primary/40 px-6 py-3 text-sm font-medium transition-all hover:scale-105 hover:border-primary"
+            onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
+            disabled={currentIndex === 0}
+            className="px-6 py-2 rounded-full border border-border/50 bg-white/50 backdrop-blur-md hover:bg-black/5 hover:border-black/10 transition-all text-foreground text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <span className="text-primary">✦</span> Replay Our Journey
+            ← Previous
+          </button>
+          <button
+            onClick={() => setCurrentIndex((prev) => Math.min(shuffledPhotos.length - 1, prev + 1))}
+            disabled={currentIndex === shuffledPhotos.length - 1}
+            className="px-6 py-2 rounded-full border border-border/50 bg-white/50 backdrop-blur-md hover:bg-black/5 hover:border-black/10 transition-all text-foreground text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Next →
           </button>
         </motion.div>
 
-        <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4">
-          {PHOTOS.map((p, i) => (
-            <motion.div
-              key={i}
-              animate={
-                burst
-                  ? {
-                      x: [Math.random() * 800 - 400, 0],
-                      y: [Math.random() * 600 - 300, 0],
-                      rotate: [Math.random() * 60 - 30, 0],
-                      scale: [0.3, 1],
-                      opacity: [0, 1],
-                    }
-                  : {}
-              }
-              transition={{ duration: 1.2, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <PhotoCard index={i} {...p} onClick={() => setActive(i)} />
-            </motion.div>
-          ))}
-        </div>
       </div>
-
-      <Lightbox
-        index={active}
-        photos={PHOTOS}
-        onClose={() => setActive(null)}
-        onChange={(i) => setActive(i)}
-      />
     </section>
   );
 }

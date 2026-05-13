@@ -1,56 +1,29 @@
-export const PHOTOS = Array.from({ length: 42 }, (_, i) => {
-  const captions = [
-    "First day of college 🎓",
-    "Library all-nighters",
-    "Canteen chai sessions ☕",
-    "That random road trip",
-    "Festival lights & laughter",
-    "Late-night talks under stars",
-    "Birthday surprises 🎂",
-    "Group project chaos",
-    "Monsoon walks ☔",
-    "Cricket on the lawn",
-    "First Diwali together ✨",
-    "Exam day panic",
-    "Hostel room midnight feast",
-    "Fresher's night dance",
-    "Beach trip memories 🌊",
-    "Sunrise from the rooftop",
-    "Coffee shop confessions",
-    "Holi colors everywhere 🎨",
-    "Movie marathon Sundays",
-    "Train journey adventures",
-    "Mountain hikes 🏔️",
-    "Café study dates",
-    "Cultural fest performance",
-    "Random photo booth fun",
-    "Long bike rides",
-    "Friendship Day forever ❤️",
-    "Winter bonfire nights 🔥",
-    "Laughing till we cried",
-    "Cricket world cup night",
-    "First salary celebration",
-    "Picnic at the lake",
-    "Concert front row 🎵",
-    "Festival food crawl",
-    "Surprise birthday cake",
-    "Last lecture memories",
-    "Convocation day 🎓",
-    "Group hug forever",
-    "Rainy day chai",
-    "Stargazing nights",
-    "Old photos, new smiles",
-    "Farewell tears",
-    "Forever friends 💖",
-  ];
-  // mix curated unsplash photos
-  const pool = [
-    1529156069898, 1496950866446, 1543807535, 1511632765486, 1543807208,
-    1529390079861, 1517457373958, 1531058020387, 1523580494863, 1517398852728,
-    1543807535826, 1502635385003, 1523240795612, 1530021232320, 1517245386807,
-  ];
-  return {
-    src: `https://picsum.photos/seed/friend-${i + 1}/800/${i % 3 === 0 ? 1000 : i % 3 === 1 ? 900 : 1100}`,
-    caption: captions[i] ?? "A memory to keep",
-  };
-});
+/**
+ * HOW TO ADD YOUR OWN PHOTOS:
+ * 
+ * 1. Place your photo files inside the `public/photos/` folder.
+ * 2. Update the `CUSTOM_PHOTOS` array below with the exact file names and captions.
+ *    For example, if you add a picture named "trip.jpg", put { src: "/photos/trip.jpg", caption: "Our trip" }
+ * 
+ * Note: If you don't have exactly 42 photos, you can add more or remove some from the list.
+ */
+
+const actualFiles = [
+  "pic1.jpeg", "pic2.jpeg", "pic3.jpeg", "pic4.jpeg", "pic6.jpeg",
+  "pic7.jpeg", "pic8.jpeg", "pic9.jpeg", "pic10.jpeg", "pic11.jpeg",
+  "pic12.jpeg", "pic13.jpeg", "pic14.jpeg", "pic15.jpeg", "pic16.jpeg",
+  "pic17.jpeg", "pic18.jpeg", "pic19.jpeg", "pic20.jpeg", "pic21.jpeg",
+  "pic22.jpeg", "pic23.jpeg", "pic24.jpeg", "pic25.jpeg", "pic27.jpeg",
+  "pic28.jpeg", "pic29.jpeg", "pic31.jpeg", "pic32.jpeg", "pic33.jpeg",
+  "pic34.jpeg", "pic35.jpeg", "pic36.jpeg", "pic37.jpeg", "pic38.jpeg",
+  "pic39.jpeg", "pic40.jpeg", "pic41.jpeg", "pic44.jpeg", "pic45.jpeg",
+  "pic46.jpeg", "pic48.jpeg", "pic49.jpeg", "pic50.jpeg", "pic51.jpeg",
+  "pic52.jpeg", "pic53.jpeg", "pic54.jpeg", "pic55.jpeg", "pic56.jpeg",
+  "pic57.jpeg", "pic58.jpeg", "pic59.jpeg", "pic60.jpeg", "pic61.jpeg",
+  "pic62.jpeg", "pic63.jpeg", "pic64.jpeg"
+];
+
+export const PHOTOS = actualFiles.map(name => ({
+  src: `/photos/${name}`,
+  caption: `A beautiful memory ✨`
+}));

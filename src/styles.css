@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:wght@300..700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -33,57 +34,64 @@
   --color-violet: var(--violet);
   --color-azure: var(--azure);
   --color-gold: var(--gold);
-  --font-display: "Playfair Display", serif;
+  --font-display: "Caveat", cursive;
   --font-body: "Inter", sans-serif;
 }
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.13 0.015 290);
-  --foreground: oklch(0.98 0.01 320);
-  --card: oklch(0.18 0.02 300 / 0.5);
-  --card-foreground: oklch(0.98 0.01 320);
-  --popover: oklch(0.18 0.05 300);
-  --popover-foreground: oklch(0.98 0.01 320);
-  --primary: oklch(0.75 0.21 350);
-  --primary-foreground: oklch(0.14 0.04 300);
-  --secondary: oklch(0.6 0.22 290);
-  --secondary-foreground: oklch(0.98 0.01 320);
-  --muted: oklch(0.25 0.05 300);
-  --muted-foreground: oklch(0.78 0.04 320);
-  --accent: oklch(0.7 0.18 240);
-  --accent-foreground: oklch(0.98 0.01 320);
-  --destructive: oklch(0.65 0.25 20);
-  --destructive-foreground: oklch(0.98 0.01 320);
-  --border: oklch(0.98 0.01 320 / 0.12);
-  --input: oklch(0.98 0.01 320 / 0.15);
-  --ring: oklch(0.75 0.21 350);
+  --background: #fdfbf7;
+  --foreground: #334155;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-foreground: #334155;
+  --popover: rgba(255, 255, 255, 0.9);
+  --popover-foreground: #334155;
+  --primary: #c2410c;
+  --primary-foreground: #ffffff;
+  --secondary: #e2e8f0;
+  --secondary-foreground: #1e293b;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #fed7aa;
+  --accent-foreground: #431407;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: rgba(0, 0, 0, 0.1);
+  --ring: #c2410c;
 
   --rose: oklch(0.78 0.2 5);
   --violet: oklch(0.65 0.25 305);
   --azure: oklch(0.72 0.18 240);
   --gold: oklch(0.86 0.16 85);
 
-  --gradient-sky: linear-gradient(180deg, oklch(0.12 0.01 290), oklch(0.13 0.015 280));
-  --gradient-heart: linear-gradient(135deg, oklch(0.78 0.22 5), oklch(0.65 0.25 320), oklch(0.7 0.2 270));
-  --gradient-gold: linear-gradient(135deg, oklch(0.92 0.14 85), oklch(0.78 0.18 50));
-  --shadow-glow: 0 0 60px oklch(0.75 0.22 350 / 0.5), 0 0 120px oklch(0.65 0.25 305 / 0.3);
-  --shadow-card: 0 25px 60px -15px oklch(0.05 0.05 300 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.05);
+  --gradient-sky: linear-gradient(180deg, transparent, transparent);
+  --gradient-heart: linear-gradient(135deg, #f43f5e, #e11d48);
+  --gradient-gold: linear-gradient(135deg, #d97706, #b45309);
+  --shadow-glow: none;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   html, body { background: var(--background); color: var(--foreground); font-family: var(--font-body); }
-  body { background: var(--gradient-sky) fixed; overflow-x: hidden; }
+  body { 
+    background-color: #fdfbf7;
+    background-image: 
+      linear-gradient(90deg, transparent 79px, #fca5a5 79px, #fca5a5 81px, transparent 81px),
+      linear-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 100% 100%, 100% 2.5rem;
+    background-position: 0 0, 0 2.5rem;
+    overflow-x: hidden; 
+  }
   h1,h2,h3,h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 }
 
 @layer utilities {
   .glass {
-    background: oklch(1 0 0 / 0.06);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid oklch(1 0 0 / 0.1);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.05);
   }
   .text-gradient {
     background: var(--gradient-heart);
