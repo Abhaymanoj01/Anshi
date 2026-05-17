@@ -6,7 +6,7 @@ export function QuizEntry({ onPass }: { onPass: () => void }) {
   const [error, setError] = useState(false);
 
   // The secret answer (case-insensitive)
-  const correctAnswer = "chunditha shirin p";
+  const correctAnswer = "jude enna summava";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ export function QuizEntry({ onPass }: { onPass: () => void }) {
 
         <div className="bg-white/5 p-8 rounded-3xl border border-white/10 shadow-inner">
           <p className="text-xl font-medium text-foreground mb-8 leading-relaxed font-display">
-            What is your name on my phone?
+            Enter the iconic dialogue of juditta tony
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-8">
@@ -61,7 +61,7 @@ export function QuizEntry({ onPass }: { onPass: () => void }) {
                 className="w-full bg-black/5 border border-white/20 rounded-2xl px-6 py-4 text-center text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-pink-400/50 transition-all backdrop-blur-sm text-lg font-medium font-sans"
               />
               {error && (
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-red-400 text-sm mt-3 absolute -bottom-6 w-full text-center font-medium"

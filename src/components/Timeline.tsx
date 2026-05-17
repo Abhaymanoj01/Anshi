@@ -1,15 +1,14 @@
 import { motion } from "framer-motion";
 
 const events = [
-  { title: "Where it all began", text: "DATA STRUCTURE - LINKED LIST", photo: { src: "/photos/Timeline/tc1.jpeg" }, photoCaption: "Unexpected yellow Matching" },
-  { title: "KISA 2.0", text: "Standing together on stage, speaking scripted dialogues,but somewhere between those scripted conversations, we were becoming each other’s safe place.", photo: { src: "/photos/Timeline/tc7.png" } },
-  { title: "The Realization", text: "What started as friendship quietly turned into a bond neither of us could imagine losing.", photo: { src: "/photos/Timeline/tc6.jpeg" } },
-  { title: "The Late-Night Comfort", text: "Some nights weren’t about talking… just knowing someone was there.", photo: { src: "/photos/Timeline/tc3.jpeg" } },
-  { title: "The ultimate chambal", text: "Story idaann Paranj Pachyakk Chaambilledi", photo: { src: "/photos/Timeline/tc2.jpeg" } },
-  { title: "Wheelchair Ride", text: "The Unexpected Hospital Sceneario", photo: { src: "/photos/Timeline/tc8.jpeg" } },
-  { title: "My Favorite Picture", text: "Every time I look at this picture, I remember how lucky I was to have someone like you beside me during these beautiful years.", photo: { src: "/photos/Timeline/tc4.jpeg" } },
-  { title: "My Favorite Memory", text: "KALAASH Campfire was really special , The hug felt so safe and special", photo: { src: "/photos/Timeline/tc5.jpeg" } },
-  { title: "And Through It All… There Was You", text: "3 years later, after all the chaos, memories, laughter and hard days ,you’re still one of the most important parts of my life ", photo: { src: "/photos/Timeline/tc9.jpeg" } },
+  { title: "Where it all began", text: "Somewhere between an NSS camp, random conversations about Yeshu Kristhu and talks about pullkoodu tonyserr entered my life", photo: { src: "/photos/Timeline/tc1.jpeg" }, photoCaption: "Karthavee Katholane" },
+  { title: "The first Message", text: "One random 'Veetil ehtyo' message from abhay._manoj to _juditta._  and unknowingly, the beginning of a connection that would later mean the world to me.", photo: { src: "/photos/Timeline/tc2.jpeg" } },
+  { title: "The Comfort", text: "From random texts to sleepless late-night conversations… talking to you slowly became my favorite part of every day.", photo: { src: "/photos/Timeline/tc3.jpeg" } },
+  { title: "The Safe Place", text: "Talking to you slowly became my daily habit… and before I realized it, you became the person I felt the most comfortable being myself with", photo: { src: "/photos/Timeline/tc4.jpeg" } },
+  { title: "The First Photo", text: "Clicked by my wife Arjuuuu", photo: { src: "/photos/Timeline/tc8.jpeg" } },
+  { title: "That delete cheythitt driveil petta photo", text: "ELLARUM FAKE AANEEEE...", photo: { src: "/photos/Timeline/tc5.jpeg" } },
+  { title: "Hey Judee", text: "The smile on your face when I gifted you the frame,honestly meant more to me than the gift itself.", photo: { src: "/photos/Timeline/tc6.jpeg" } },
+  { title: "And Through It All… There Was You", text: "3 years later, after all the chaos, memories, laughter and hard days ,you’re still one of the most important parts of my life ", photo: { src: "/photos/Timeline/tc7.jpeg" } },
 
 ];
 

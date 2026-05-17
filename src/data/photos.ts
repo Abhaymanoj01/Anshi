@@ -9,18 +9,13 @@
  */
 
 const actualFiles = [
-  "pic1.jpeg", "pic2.jpeg", "pic3.jpeg", "pic4.jpeg", "pic6.jpeg",
-  "pic7.jpeg", "pic8.jpeg", "pic9.jpeg", "pic10.jpeg", "pic11.jpeg",
-  "pic12.jpeg", "pic13.jpeg", "pic14.jpeg", "pic15.jpeg", "pic16.jpeg",
-  "pic17.jpeg", "pic18.jpeg", "pic19.jpeg", "pic20.jpeg", "pic21.jpeg",
-  "pic22.jpeg", "pic23.jpeg", "pic24.jpeg", "pic25.jpeg", "pic27.jpeg",
-  "pic28.jpeg", "pic29.jpeg", "pic31.jpeg", "pic32.jpeg", "pic33.jpeg",
-  "pic34.jpeg", "pic35.jpeg", "pic36.jpeg", "pic37.jpeg", "pic38.jpeg",
-  "pic39.jpeg", "pic40.jpeg", "pic41.jpeg", "pic44.jpeg", "pic45.jpeg",
-  "pic46.jpeg", "pic48.jpeg", "pic49.jpeg", "pic50.jpeg", "pic51.jpeg",
-  "pic52.jpeg", "pic53.jpeg", "pic54.jpeg", "pic55.jpeg", "pic56.jpeg",
-  "pic57.jpeg", "pic58.jpeg", "pic59.jpeg", "pic60.jpeg", "pic61.jpeg",
-  "pic62.jpeg", "pic63.jpeg", "pic64.jpeg"
+  "pic1.jpeg", "pic2.jpeg", "pic3.jpeg", "pic4.jpeg", "pic5.jpeg",
+  "pic6.jpeg", "pic7.jpeg", "pic8.jpeg", "pic9.jpeg", "pic10.jpeg",
+  "pic11.jpeg", "pic12.jpeg", "pic13.jpeg", "pic14.jpeg", "pic15.jpeg",
+  "pic16.jpeg", "pic17.jpeg", "pic18.jpeg", "pic19.jpeg", "pic20.jpeg",
+  "pic21.jpeg", "pic22.jpeg", "pic23.jpeg", "pic24.jpeg", "pic25.jpeg",
+  "pic26.jpeg", "pic28.jpeg", "pic29.jpeg", "pic30.jpeg", "pic31.jpeg",
+  "pic32.jpeg", "pic34.jpeg", "pic35.jpeg", "pic36.png", "pic37.png"
 ];
 
 export const PHOTOS = actualFiles.map(name => ({

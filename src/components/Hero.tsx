@@ -6,7 +6,7 @@ export function Hero() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background Image */}
       <motion.img
-        src="/photos/her.png"
+        src="/photos/hero.jpeg"
         alt="Hero Background"
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.8 }}
@@ -22,11 +22,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2 }}
-          className="text-5xl leading-[1.05] font-bold text-balance md:text-7xl lg:text-8xl text-foreground font-display"
+          className="text-5xl leading-[1.05] font-bold text-balance md:text-7xl lg:text-8xl font-display text-transparent bg-clip-text bg-gradient-to-r from-[#5d101d] to-[#2b050a]"
+          style={{ filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.1))" }}
         >
-          3 Years<br />
-          A Thousand Memories<br />
-          One Soul That Became My Home🏡
+          Hey Jude....
         </motion.h1>
 
         <motion.p
@@ -35,7 +34,7 @@ export function Hero() {
           transition={{ delay: 1.6, duration: 1 }}
           className="mx-auto mt-8 max-w-xl text-lg text-stone-900 font-medium italic md:text-xl leading-relaxed font-body drop-shadow-sm"
         >
-          “Thank you for staying through every version of me.”
+          “1.5 years & forever to go..Thank you for staying.”
         </motion.p>
 
         <motion.div

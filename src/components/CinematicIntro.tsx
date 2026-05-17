@@ -2,21 +2,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { HeartParticles, Fireflies } from "./Atmosphere";
 
-export function CinematicIntro({ onReady }: { onReady: () => void }) {
+export function CinematicIntro({ onReady, messages }: { onReady: () => void, messages: string[] }) {
   const [phase, setPhase] = useState<"black" | "message" | "button">("black");
-  const message = "Hey... before you continue, this is something special.";
 
   useEffect(() => {
-    // Fade to black stays for 1.5s, then moves to message
+    // Calculate total duration based on all lines
+    const totalChars = messages.join("").length;
+    const typingDuration = totalChars * 70; // approximate duration
+
     const timer1 = setTimeout(() => setPhase("message"), 1500);
-    // Button appears after the message finishes typing
-    const timer2 = setTimeout(() => setPhase("button"), 1500 + message.length * 80 + 1000);
+    const timer2 = setTimeout(() => setPhase("button"), 1500 + typingDuration + 1500);
     
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, [message.length]);
+  }, [messages]);
 
   return (
     <AnimatePresence>
@@ -27,7 +28,6 @@ export function CinematicIntro({ onReady }: { onReady: () => void }) {
         exit={{ opacity: 0, scale: 1.1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
-        {/* Render atmosphere only after the initial black screen */}
         {phase !== "black" && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -35,34 +35,43 @@ export function CinematicIntro({ onReady }: { onReady: () => void }) {
             transition={{ duration: 2 }}
             className="absolute inset-0"
           >
-            {/* Removed solid gradient */}
             <HeartParticles count={15} />
             <Fireflies count={30} />
           </motion.div>
         )}
 
-        <div className="relative z-10 px-6 text-center">
+        <div className="relative z-10 px-6 text-center max-w-3xl">
           {phase !== "black" && (
-            <motion.h2
-              className="font-display text-2xl md:text-4xl text-foreground text-glow"
+            <motion.div
+              className="font-display text-2xl md:text-4xl text-foreground text-glow flex flex-col gap-6"
               style={{ filter: "drop-shadow(0 0 20px oklch(0.75 0.22 350 / 0.5))" }}
             >
-              {message.split("").map((char, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.1, delay: index * 0.08 }}
-                >
-                  {char}
-                </motion.span>
+              {messages.map((line, lineIndex) => (
+                <div key={lineIndex}>
+                  {line.split("").map((char, charIndex) => {
+                    // Calculate delay based on previous lines
+                    const prevLinesLength = messages.slice(0, lineIndex).join("").length;
+                    return (
+                      <motion.span
+                        key={`${lineIndex}-${charIndex}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.1, delay: (prevLinesLength + charIndex) * 0.07 }}
+                      >
+                        {char}
+                      </motion.span>
+                    );
+                  })}
+                  {lineIndex === messages.length - 1 && (
+                    <motion.span
+                      animate={{ opacity: [1, 0] }}
+                      transition={{ repeat: Infinity, duration: 0.8 }}
+                      className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle"
+                    />
+                  )}
+                </div>
               ))}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ repeat: Infinity, duration: 0.8 }}
-                className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle"
-              />
-            </motion.h2>
+            </motion.div>
           )}
 
           {phase === "button" && (

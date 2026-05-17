@@ -45,13 +45,26 @@ function Typewriter({ text, delay = 0, onComplete }: { text: string, delay?: num
 }
 
 const LETTER_PARAGRAPHS = [
-  "Dear Anshiiiii,",
-  "I just wanted to remind you how much you mean to me. These three years gave me countless memories, but the best part of all of them was having you by my side. From random laughs to the hardest days, you were always there, and honestly, I can’t imagine these years without you.",
-  "As this beautiful chapter of our college life comes to an end, I just want to wish you happiness, success, and beautiful moments in everything that lies ahead for you. No matter where life takes us, please remember that I’ll always be there for you whenever you need me — just one call away.",
-  "Thank you for being one of the most special parts of my life, Anshiiii❤️..i love youu always..!!",
-  "Eppazhum Parayane Pole..Enthenkilum pattiyaa oodi ing poruu..."
-];
+  "Hey Jude,",
 
+  "I honestly don’t know when it happened, but somewhere between all the random conversations, late-night texts, endless laughs, and little moments… you became one of the most important parts of my life.",
+
+  "What made you special to me was never just the memories we made — it was you. Your heart, your kindness, the way you care, and the comfort I always felt around you.",
+
+  "Nothing about us ever felt forced. Talking to you became my peace, my daily habit, and slowly… my comfort zone.",
+
+  "These years would never have felt this beautiful without you in them.",
+
+  "As college comes to an end, I just want you to remember one thing — no matter where life takes us, no matter how busy life becomes, I’ll always be there for you whenever you need me… just one call away.",
+
+  "And honestly, a part of me will always be grateful that life introduced me to you.",
+
+  "Thank you for being my peace, my happiness, and one of the most beautiful parts of my life....i love youu always..!!",
+
+  "Always rooting for you,",
+
+  "Manoj ❤️",
+];
 export function Ending() {
   const collage = PHOTOS.slice(0, 12);
   const [showLetter, setShowLetter] = useState(false);
@@ -76,7 +89,7 @@ export function Ending() {
           transition={{ duration: 1.2 }}
           className="font-display mx-auto max-w-3xl text-3xl leading-snug text-balance italic md:text-5xl"
         >
-          "Some friendships become a part of the <span className="text-gradient">soul</span>."
+          "Some connections become the part of the <span className="text-gradient">soul</span>."
         </motion.blockquote>
 
         <div className="relative mx-auto mt-20 grid h-[400px] max-w-3xl grid-cols-6 gap-3">
@@ -103,7 +116,7 @@ export function Ending() {
           className="mt-24 text-6xl font-bold tracking-tight md:text-8xl"
           style={{ filter: "drop-shadow(0 0 40px oklch(0.75 0.22 350 / 0.6))" }}
         >
-          <span className="text-gradient">Forever Friends</span>
+          <span className="text-gradient">Forever & Always it was you</span>
           <span className="ml-3">❤️</span>
         </motion.h2>
 
@@ -114,7 +127,8 @@ export function Ending() {
           transition={{ delay: 1, duration: 1.5 }}
           className="mt-8 text-sm tracking-[0.4em] text-muted-foreground uppercase"
         >
-          Through Thick And Thin, We Built Memories I’ll Carry Forever.
+          "I think a part of my heart will always be grateful that life gave me you."
+
         </motion.p>
         <motion.div
           initial={{ opacity: 0 }}
